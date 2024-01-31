@@ -9,6 +9,12 @@ Follow these steps to set up and run the ERP system locally.
 ```bash
 git clone https://github.com/your-username/erp-system.git
 
+exit
+
+### Clone Repository
+
+```bash
+git clone https://github.com/your-username/erp-system.git
 
 Install Dependencies
 Navigate to the project directory and install the required dependencies:
