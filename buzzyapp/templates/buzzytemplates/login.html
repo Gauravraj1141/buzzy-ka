@@ -22,22 +22,16 @@ Login
 <div class="container h-100 text-center ">
     <div class="mt-4">
 
-        {% if form.non_field_errors %}
-        <div class="non-field-errors">
-            {% for err in form.non_field_errors %}
-            <p class="form-error">{{ err }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
+     
 
         {% comment %} show success messages {% endcomment %}
 
 
         {% for msg in messages %}
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success" role="alert" id="alert">
             <h4 {% if msg.tags %} class=" {{ msg.tags }}  alert-heading" {% endif %}>{{ msg }}</h4>
         </div>
-        {% endfor %}
+        {% endfor %} 
 
         <section class="vh-100">
             <div class="container py-5 h-100">
@@ -52,39 +46,27 @@ Login
                                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div class="card-body p-4 p-lg-5 text-black">
 
-                                        <form action="" method="POST" novalidate>
+                                        <form id ="loginform" action="" method="POST" novalidate>
                                             {% csrf_token %}
 
                                             <div class="d-flex align-items-center mb-3 pb-1">
                                                 <img src="https://images.pexels.com/photos/19308356/pexels-photo-19308356/free-photo-of-laptop-on-sofa.jpeg?auto=compress&cs=tinysrgb&w=600" alt="logo"
                                                     class="profile-img text-warning">
+                                                    
                                             </div>
 
-                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log In to your
+                                            <h5 class="fw-bold mb-3 pb-3 " style="letter-spacing: 1px;">Log In to your
                                                 account</h5>
 
-                                            {% comment %} here we give non field errros {% endcomment %}
-
-                                            {% if form.non_field_errors %}
-
-                                            <div class="non-field-errors">
-                                                {% for err in form.non_field_errors %}
-                                                <p class="form-error text-danger">{{ err }}</p>
-                                                {% endfor %}
-                                            </div>
-
-                                            {% endif %}
-
-                                            {% comment %} here we give our django login form {% endcomment %}
 
                                             <div class="form-group justify-content-center">
                                                 <label for="usernameinput" class="fw-bold">Username</label>
-                                                <input type="text" class="form-control w-50 m-auto" id="usernameinput" placeholder="username" name='username'>
+                                                <input type="text" class="form-control w-50 m-auto" id="usernameinput" placeholder="username" name='username'  required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1" class="fw-bold">Password</label>
-                                                <input type="password" class="form-control w-50 m-auto" id="exampleInputPassword1" placeholder="Password" name='password'>
+                                                <input type="password" class="form-control w-50 m-auto" id="exampleInputPassword1" placeholder="Password" name='password'  required>
                                             </div>
                                            
 
@@ -110,4 +92,22 @@ Login
 
     </div>
 </div>
+
+
+
+<script>
+    document.getElementById("loginform").addEventListener("submit", function (event) {
+        var form = event.target;
+      
+
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+    });
+</script>
+
+    
 {% endblock content %}

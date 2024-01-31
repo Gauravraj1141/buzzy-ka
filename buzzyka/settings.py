@@ -68,6 +68,12 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'buzzyka.custom_backend.CustomBackend',
+]
+
+
 WSGI_APPLICATION = 'buzzyka.wsgi.application'
 
 

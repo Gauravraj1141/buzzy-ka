@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
 
@@ -12,7 +12,7 @@ class Home(View):
         if request.user.is_authenticated:
             print("no bhaiya nhi h ")
         else:
-            print("ha bhaiya h ")
-            return render(request, 'buzzytemplates/login.html',context)
+           
+            return redirect("login")
         return render(request, self.template_name, context)
 

@@ -7,10 +7,7 @@ Home
 
 {% block buttons %}
 <div class="d-flex" role="button">
-    {% comment %} <a class=" btn btn-success mx-2 " href="{% url 'logout' %}">Log Out</a> {% endcomment %}
-    <a class=" btn btn-success mx-2 " href="/">Log Out</a>
-   
-
+    <a class=" btn btn-success mx-2 " href="{% url 'logout' %}">Log Out</a>
 </div>
 {% endblock buttons %}
 
@@ -24,17 +21,42 @@ Home
             <a href="{% url 'inventory' %}" class="btn btn-outline-warning ">Inventory</a>
         </div>
         <hr>
-        {% comment %} 
+        
         {% for msg in messages %}
         <div class="alert alert-success" role="alert" id="alert">
             <h4 {% if msg.tags %} class=" {{ msg.tags }}  alert-heading" {% endif %}>{{ msg }}</h4>
         </div>
-        {% endfor %} {% endcomment %}
+        {% endfor %} 
         
         <div class="row">
             <div class="col-md-12  shadow-lg p-3 mb-5  rounded">
-                <h3 class="readhead font-heading">Create a Order</h3>
+                <h3 class="readhead font-heading mb-2">Create a Order</h3>
+
+                <form id="create-order-form" action="" method="POST" novalidate>
+                    {% csrf_token %}
+
+                <select class="form-select m-auto w-50 bg-success text-warning mb-3" aria-label="Default select example">
+                    <option selected>Choose Products</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
+                <select class="form-select m-auto w-50 bg-success text-warning mb-3" aria-label="Default select example">
+                    <option selected>Choose Supplier</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <div class="form-group justify-content-center mb-3">
+                    <input type="text" class="form-control w-50 m-auto" id="quantity" placeholder="Quantity" name='quantity'  required>
+                </div>
                 
+                <div class="pt-1 mb-4">
+                    <input type="submit" value="Place Order"
+                        class="btn btn-warning btn-lg btn-block">
+                </div>
+
        
                 <hr>
             </div>
